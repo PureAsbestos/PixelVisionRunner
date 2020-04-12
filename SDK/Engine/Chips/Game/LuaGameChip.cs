@@ -111,6 +111,7 @@ namespace PixelVision8.Engine.Chips
             LuaScript.Globals["Button"] = new Func<Buttons, InputState, int, bool>(Button);
             LuaScript.Globals["MouseButton"] = new Func<int, InputState, bool>(MouseButton);
             LuaScript.Globals["MousePosition"] = new Func<Point>(MousePosition);
+            LuaScript.Globals["MouseWheel"] = new Func<ScrollDirection, int>(MouseWheel);
             LuaScript.Globals["InputString"] = new Func<string>(InputString);
 
             #endregion
@@ -223,6 +224,9 @@ namespace PixelVision8.Engine.Chips
 
             UserData.RegisterType<InputState>();
             LuaScript.Globals["InputState"] = UserData.CreateStatic<InputState>();
+
+            UserData.RegisterType<ScrollDirection>();
+            luaScript.Globals["ScrollDirection"] = UserData.CreateStatic<ScrollDirection>();
 
             UserData.RegisterType<SaveFlags>();
             LuaScript.Globals["SaveFlags"] = UserData.CreateStatic<SaveFlags>();
