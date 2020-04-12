@@ -1241,7 +1241,7 @@ namespace PixelVision8.Engine.Chips
         /// 
         public int MouseWheel(ScrollDirection direction = ScrollDirection.Vertical)
         {
-            return controllerChip.ReadMouseWheel(direction);
+            return ControllerChip.ReadMouseWheel(direction);
         }
 
         /// <summary>

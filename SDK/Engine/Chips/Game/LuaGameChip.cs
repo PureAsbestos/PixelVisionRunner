@@ -226,7 +226,7 @@ namespace PixelVision8.Engine.Chips
             LuaScript.Globals["InputState"] = UserData.CreateStatic<InputState>();
 
             UserData.RegisterType<ScrollDirection>();
-            luaScript.Globals["ScrollDirection"] = UserData.CreateStatic<ScrollDirection>();
+            LuaScript.Globals["ScrollDirection"] = UserData.CreateStatic<ScrollDirection>();
 
             UserData.RegisterType<SaveFlags>();
             LuaScript.Globals["SaveFlags"] = UserData.CreateStatic<SaveFlags>();
