@@ -24,9 +24,6 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-//using Microsoft.Xna.Framework.Input;
-//using Keys = PixelVisionSDK.Keys;
-
 namespace PixelVision8.Engine.Chips
 {
     public enum MouseInput
@@ -100,7 +97,7 @@ namespace PixelVision8.Engine.Chips
 
         private Keys? repChar;
 
-        public void SetInputText(char character, Microsoft.Xna.Framework.Input.Keys key)
+        public void SetInputText(char character, Keys key)
         {
             var value = Convert.ToInt32(character);
 
@@ -108,7 +105,7 @@ namespace PixelVision8.Engine.Chips
             {
                 inputStringBuilder.Append(character);
             }
-                
+
         }
 
 
@@ -158,7 +155,8 @@ namespace PixelVision8.Engine.Chips
 
                 }
 
-                var tmpKey = (Microsoft.Xna.Framework.Input.Keys) (int) key;
+                var tmpKey = (Keys) (int) key;
+
                 if (repChar != null && repChar == pv8Key && currentKeyboardState.IsKeyDown(tmpKey))
                 {
                     var now = DateTime.Now;
@@ -192,14 +190,14 @@ namespace PixelVision8.Engine.Chips
 
         public bool GetKeyDown(Keys key)
         {
-            var tmpKey = (Microsoft.Xna.Framework.Input.Keys) (int) key;
+            var tmpKey = (Microsoft.Xna.Framework.Input.Keys)(int)key;
 
             return currentKeyboardState.IsKeyDown(tmpKey) && previousKeyboardState.IsKeyDown(tmpKey);
         }
 
         public bool GetKeyUp(Keys key)
         {
-            var tmpKey = (Microsoft.Xna.Framework.Input.Keys) (int) key;
+            var tmpKey = (Microsoft.Xna.Framework.Input.Keys)(int)key;
 
             return !currentKeyboardState.IsKeyDown(tmpKey) && previousKeyboardState.IsKeyDown(tmpKey);
         }
@@ -218,7 +216,7 @@ namespace PixelVision8.Engine.Chips
             {
                 Keys key = player.KeyboardMap.TryGetValue(button, out key) ? key : default;
 
-                var tmpKey = (Microsoft.Xna.Framework.Input.Keys) (int) key;
+                var tmpKey = (Microsoft.Xna.Framework.Input.Keys)(int)key;
 
                 // Test the keyboard or the controller
                 value = !currentKeyboardState.IsKeyDown(tmpKey) && previousKeyboardState.IsKeyDown(tmpKey) ||
@@ -238,7 +236,7 @@ namespace PixelVision8.Engine.Chips
             {
                 Keys key = player.KeyboardMap.TryGetValue(button, out key) ? key : default;
 
-                var tmpKey = (Microsoft.Xna.Framework.Input.Keys) (int) key;
+                var tmpKey = (Microsoft.Xna.Framework.Input.Keys)(int)key;
 
                 // Test the keyboard or the controller
                 value = currentKeyboardState.IsKeyDown(tmpKey) && previousKeyboardState.IsKeyDown(tmpKey) ||
@@ -257,7 +255,7 @@ namespace PixelVision8.Engine.Chips
             var player1 = getPlayer(0);
 
             var test = engine.GetMetadata(InputMap.Player1UpKey.ToString());
-            
+
             try
             {
                 player1.KeyboardMap = new Dictionary<Buttons, Keys>
@@ -322,7 +320,7 @@ namespace PixelVision8.Engine.Chips
                 throw;
             }
         }
-        
+
         public void RegisterControllers()
         {
             var state = GamePad.GetState(0, gamePadDeadZone);
@@ -341,7 +339,7 @@ namespace PixelVision8.Engine.Chips
                 player2.CurrentState = state;
             }
         }
-        
+
         public override void Configure()
         {
             engine.ControllerChip = this;
@@ -403,34 +401,34 @@ namespace PixelVision8.Engine.Chips
                     return state.Buttons.A == ButtonState.Pressed;
                 case Buttons.B:
                     return state.Buttons.B == ButtonState.Pressed;
-                //                case Buttons.LeftShoulder:
-                //                    return state.Buttons.LeftShoulder == ButtonState.Pressed;
-                //                case Buttons.RightShoulder:
-                //                    return state.Buttons.RightShoulder == ButtonState.Pressed;
-                //                case Buttons.LeftTrigger:
-                //                    return state.Triggers.Left > DeadzoneTriggers;
-                //                case Buttons.RightTrigger:
-                //                    return state.Triggers.Right > DeadzoneTriggers;
-                //                case Buttons.LeftStick:
-                //                    return state.Buttons.LeftStick == ButtonState.Pressed;
-                //                case Buttons.LeftStickUp:
-                //                    return state.ThumbSticks.Left.Y > DeadzoneSticks;
-                //                case Buttons.LeftStickLeft:
-                //                    return state.ThumbSticks.Left.X < -DeadzoneSticks;
-                //                case Buttons.LeftStickDown:
-                //                    return state.ThumbSticks.Left.Y < -DeadzoneSticks;
-                //                case Buttons.LeftStickRight:
-                //                    return state.ThumbSticks.Left.X > DeadzoneSticks;
-                //                case Buttons.RightStick:
-                //                    return state.Buttons.RightStick == ButtonState.Pressed;
-                //                case Buttons.RightStickUp:
-                //                    return state.ThumbSticks.Right.Y > DeadzoneSticks;
-                //                case Buttons.RightStickLeft:
-                //                    return state.ThumbSticks.Right.X < -DeadzoneSticks;
-                //                case Buttons.RightStickDown:
-                //                    return state.ThumbSticks.Right.Y < -DeadzoneSticks;
-                //                case Buttons.RightStickRight:
-                //                    return state.ThumbSticks.Right.X > DeadzoneSticks;
+                    //                case Buttons.LeftShoulder:
+                    //                    return state.Buttons.LeftShoulder == ButtonState.Pressed;
+                    //                case Buttons.RightShoulder:
+                    //                    return state.Buttons.RightShoulder == ButtonState.Pressed;
+                    //                case Buttons.LeftTrigger:
+                    //                    return state.Triggers.Left > DeadzoneTriggers;
+                    //                case Buttons.RightTrigger:
+                    //                    return state.Triggers.Right > DeadzoneTriggers;
+                    //                case Buttons.LeftStick:
+                    //                    return state.Buttons.LeftStick == ButtonState.Pressed;
+                    //                case Buttons.LeftStickUp:
+                    //                    return state.ThumbSticks.Left.Y > DeadzoneSticks;
+                    //                case Buttons.LeftStickLeft:
+                    //                    return state.ThumbSticks.Left.X < -DeadzoneSticks;
+                    //                case Buttons.LeftStickDown:
+                    //                    return state.ThumbSticks.Left.Y < -DeadzoneSticks;
+                    //                case Buttons.LeftStickRight:
+                    //                    return state.ThumbSticks.Left.X > DeadzoneSticks;
+                    //                case Buttons.RightStick:
+                    //                    return state.Buttons.RightStick == ButtonState.Pressed;
+                    //                case Buttons.RightStickUp:
+                    //                    return state.ThumbSticks.Right.Y > DeadzoneSticks;
+                    //                case Buttons.RightStickLeft:
+                    //                    return state.ThumbSticks.Right.X < -DeadzoneSticks;
+                    //                case Buttons.RightStickDown:
+                    //                    return state.ThumbSticks.Right.Y < -DeadzoneSticks;
+                    //                case Buttons.RightStickRight:
+                    //                    return state.ThumbSticks.Right.X > DeadzoneSticks;
             }
 
             return false;
@@ -457,7 +455,8 @@ namespace PixelVision8.Engine.Chips
 
         public bool JustPressed(Keys key)
         {
-            var tmpKey = (Keys) (int) key;
+
+            var tmpKey = (Keys)(int)key;
 
             return currentKeyboardState.IsKeyDown(tmpKey) && !previousKeyboardState.IsKeyDown(tmpKey);
         }
